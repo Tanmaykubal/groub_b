@@ -11,7 +11,7 @@ with open("Regressor.pkl", "rb") as f:
 
 
 st.sidebar.title("Loan Prediction App")
-menu = st.sidebar.radio("Navigation", ["Home", "Loan Approval", "Loan Prediction"])
+menu = st.sidebar.radio("Navigation", ["Home", "Loan Approval", "Loan Prediction", "CIBIL Estimator"])
 
 if menu == "Home":
     st.title("🏦 LoanBuddy")
@@ -103,3 +103,4 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
