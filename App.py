@@ -69,3 +69,37 @@ elif menu == "Loan Prediction":
 
 
         st.success(f"🏦 You are likely to be sanctioned a loan of: ₹{int(pred):,}")
+
+elif menu == "CIBIL Estimator":
+    st.title("📊 CIBIL Score Estimator")
+    st.write("If you don’t know your CIBIL score, answer a few questions to estimate it.")
+
+    # Example factors that influence CIBIL
+    payment_history = st.slider("How regular are you with loan/credit card payments?", 1, 5, 3,
+                                help="1 = Very Irregular, 5 = Always On Time")
+    credit_utilization = st.slider("Credit Utilization Ratio (%)", 0, 100, 40,
+                                   help="How much of your credit limit you use")
+    credit_mix = st.selectbox("Do you have a mix of loans (Credit Card + Personal + Home Loan)?", ["No", "Yes"])
+    loan_accounts = st.slider("Number of Active Loan/Credit Accounts", 0, 15, 3)
+    credit_age = st.slider("Age of Credit History (years)", 0, 25, 5)
+
+    if st.button("Estimate CIBIL Score"):
+        # Simple formula for estimation (you can refine this with ML later)
+        score = 300
+        score += payment_history * 80
+        score += (100 - credit_utilization) * 2
+        score += 50 if credit_mix == "Yes" else -20
+        score += loan_accounts * 5
+        score += credit_age * 4
+
+        # Keep within CIBIL range
+        score = min(max(score, 300), 900)
+
+        st.success(f"🔢 Your estimated CIBIL Score is: **{int(score)}**")
+
+        if score < 600:
+            st.error("⚠️ Poor Credit Score – Work on repayment discipline.")
+        elif score < 750:
+            st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
+        else:
+            st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
