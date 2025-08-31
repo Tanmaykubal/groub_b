@@ -1,6 +1,8 @@
 import streamlit as st
 import pickle
 import pandas as pd
+import plotly.graph_objects as go
+
 
 with open("Classification.pkl", "rb") as f:
     loan_classifier = pickle.load(f)
@@ -95,7 +97,28 @@ elif menu == "CIBIL Estimator":
         # Keep within CIBIL range
         score = min(max(score, 300), 900)
 
-        st.success(f"🔢 Your estimated CIBIL Score is: **{int(score)}**")
+        fig = go.Figure(go.Indicator(
+            mode="gauge+number",
+            value=score,
+            title={'text': "Estimated CIBIL Score"},
+            gauge={
+                'axis': {'range': [300, 900]},
+                'bar': {'color': "black"},
+                'steps': [
+                    {'range': [300, 600], 'color': "red"},
+                    {'range': [600, 750], 'color': "yellow"},
+                    {'range': [750, 900], 'color': "green"}
+                ],
+                'threshold': {
+                    'line': {'color': "blue", 'width': 4},
+                    'thickness': 0.8,
+                    'value': score
+                }
+            }
+        ))
+
+        st.plotly_chart(fig, use_container_width=True)
+
 
         if score < 600:
             st.error("⚠️ Poor Credit Score – Work on repayment discipline.")
@@ -103,4 +126,5 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
