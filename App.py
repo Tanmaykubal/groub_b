@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import pandas as pd
 import plotly.graph_objects as go
-
+import numpy as np
 
 with open("Classification.pkl", "rb") as f:
     loan_classifier = pickle.load(f)
@@ -157,6 +157,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
