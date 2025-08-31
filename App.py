@@ -10,7 +10,63 @@ with open("Classification.pkl", "rb") as f:
 with open("Regressor.pkl", "rb") as f:
     loan_regressor = pickle.load(f)
 
+# ------------------ Gauge Function ------------------
+def make_gauge(score=300):
+    # Map score (300–900) → angle (180° to 0°)
+    angle = (score - 300) * 180 / (900 - 300)
+    rad = np.deg2rad(180 - angle)  # 300 = left, 900 = right
+    
+    needle_length = 0.4
+    x_head = 0.5 + needle_length * np.cos(rad)
+    y_head = 0.5 + needle_length * np.sin(rad)
 
+    fig = go.Figure()
+
+    # Gauge background (semicircle)
+    fig.add_trace(go.Pie(
+        values=[1,1,1,1,1,5],  # last part = blank
+        labels=["Poor 300-579","Fair 580-669","Good 670-739",
+                "Very Good 740-799","Excellent 800-900",""],
+        marker=dict(colors=["#ef4444","#f97316","#facc15","#a3e635","#2ecc71","white"]),
+        hole=0.5,
+        direction="clockwise",
+        sort=False,
+        rotation=180,   # semicircle
+        textinfo="label",
+        hoverinfo="skip"
+    ))
+
+    # Needle
+    fig.add_trace(go.Scatter(
+        x=[0.5, x_head],
+        y=[0.5, y_head],
+        mode="lines",
+        line=dict(color="black", width=6),
+        hoverinfo="skip",
+        showlegend=False
+    ))
+
+    # Center circle
+    fig.add_trace(go.Scatter(
+        x=[0.5],
+        y=[0.5],
+        mode="markers",
+        marker=dict(size=30, color="black"),
+        hoverinfo="skip",
+        showlegend=False
+    ))
+
+    # Layout
+    fig.update_layout(
+        showlegend=False,
+        margin=dict(t=50,b=20,l=20,r=20),
+        paper_bgcolor="white",
+        plot_bgcolor="white",
+        xaxis=dict(visible=False),
+        yaxis=dict(visible=False),
+        height=400
+    )
+    return fig
 
 st.sidebar.title("Loan Prediction App")
 menu = st.sidebar.radio("Navigation", ["Home", "Loan Approval", "Loan Prediction", "CIBIL Estimator"])
@@ -96,68 +152,15 @@ elif menu == "CIBIL Estimator":
 
         # Keep within CIBIL range
         score = min(max(score, 300), 900)
-
-        # ---------------- SPEEDOMETER ----------------
-        # Convert score → angle
-        angle = (900 - score) * 180 / 600
-        radians = np.deg2rad(angle)
-
-        # Needle end coordinates
-        x_head = 0.5 + 0.4 * np.cos(radians)
-        y_head = 0.5 + 0.4 * np.sin(radians)
-
-        # Create gauge background
-        fig = go.Figure()
-
-        fig.add_trace(go.Pie(
-            values=[300, 150, 150, 300],
-            rotation=180,
-            hole=0.5,
-            marker_colors=["red", "yellow", "green", "lightgray"],
-            textinfo="none",
-            hoverinfo="skip",
-            showlegend=False
-        ))
-
-        # Add needle
-        fig.add_trace(go.Scatter(
-            x=[0.5, x_head],
-            y=[0.5, y_head],
-            mode="lines+markers",
-            line=dict(color="black", width=4),
-            marker=dict(size=12, color="black"),
-            hoverinfo="skip",
-            showlegend=False
-        ))
-
-        # Add center circle
-        fig.add_trace(go.Scatter(
-            x=[0.5],
-            y=[0.5],
-            mode="markers",
-            marker=dict(size=20, color="black"),
-            hoverinfo="skip",
-            showlegend=False
-        ))
-
-        # Layout
-        fig.update_layout(
-            title="Estimated CIBIL Score Speedometer",
-            xaxis=dict(showgrid=False, zeroline=False, visible=False),
-            yaxis=dict(showgrid=False, zeroline=False, visible=False),
-            width=500, height=400,
-            margin=dict(l=0, r=0, t=50, b=0),
-            plot_bgcolor="white",
-        )
-
-        st.plotly_chart(fig, use_container_width=True)
-        
+        st.plotly_chart(make_gauge(score))
+                
         if score < 600:
             st.error("⚠️ Poor Credit Score – Work on repayment discipline.")
         elif score < 750:
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
