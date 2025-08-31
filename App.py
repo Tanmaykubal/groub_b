@@ -97,28 +97,59 @@ elif menu == "CIBIL Estimator":
         # Keep within CIBIL range
         score = min(max(score, 300), 900)
 
-        fig = go.Figure(go.Indicator(
-            mode="gauge+number",
-            value=score,
-            title={'text': "Estimated CIBIL Score"},
-            gauge={
-                'axis': {'range': [300, 900]},
-                'bar': {'color': "black"},
-                'steps': [
-                    {'range': [300, 600], 'color': "red"},
-                    {'range': [600, 750], 'color': "yellow"},
-                    {'range': [750, 900], 'color': "green"}
-                ],
-                'threshold': {
-                    'line': {'color': "blue", 'width': 4},
-                    'thickness': 0.8,
-                    'value': score
-                }
-            }
+        # Convert score to angle (map 300-900 → 180° to 0°)
+        angle = (900 - score) * 180 / 600  # in degrees
+        radians = np.deg2rad(angle)
+
+        # Needle end coordinates
+        x_head = 0.5 + 0.4 * np.cos(radians)  # length = 0.4
+        y_head = 0.5 + 0.4 * np.sin(radians)
+
+        # Create gauge background
+        fig = go.Figure()
+
+        fig.add_trace(go.Pie(
+            values=[300, 150, 150, 300],
+            rotation=180,
+            hole=0.5,
+            marker_colors=["red", "yellow", "green", "lightgray"],
+            textinfo="none",
+            hoverinfo="skip",
+            showlegend=False
         ))
 
-        st.plotly_chart(fig, use_container_width=True)
+        # Add needle
+        fig.add_trace(go.Scatter(
+            x=[0.5, x_head],
+            y=[0.5, y_head],
+            mode="lines+markers",
+            line=dict(color="black", width=4),
+            marker=dict(size=12, color="black"),
+            hoverinfo="skip",
+            showlegend=False
+        ))
 
+        # Add center circle (needle base)
+        fig.add_trace(go.Scatter(
+            x=[0.5],
+            y=[0.5],
+            mode="markers",
+            marker=dict(size=20, color="black"),
+            hoverinfo="skip",
+            showlegend=False
+        ))
+
+        # Layout adjustments
+        fig.update_layout(
+            title="Estimated CIBIL Score",
+            xaxis=dict(showgrid=False, zeroline=False, visible=False),
+            yaxis=dict(showgrid=False, zeroline=False, visible=False),
+            width=500, height=400,
+            margin=dict(l=0, r=0, t=50, b=0),
+            plot_bgcolor="white",
+        )
+
+        fig.show()
 
         if score < 600:
             st.error("⚠️ Poor Credit Score – Work on repayment discipline.")
@@ -126,5 +157,6 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
