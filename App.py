@@ -10,64 +10,6 @@ with open("Classification.pkl", "rb") as f:
 with open("Regressor.pkl", "rb") as f:
     loan_regressor = pickle.load(f)
 
-# ------------------ Gauge Function ------------------
-def make_gauge(score=300):
-    # Map score (300–900) → angle (180° to 0°)
-    angle = (score - 300) * 180 / (900 - 300)
-    rad = np.deg2rad(180 - angle)  # 300 = left, 900 = right
-    
-    needle_length = 0.4
-    x_head = 0.5 + needle_length * np.cos(rad)
-    y_head = 0.5 + needle_length * np.sin(rad)
-
-    fig = go.Figure()
-
-    # Gauge background (semicircle)
-    fig.add_trace(go.Pie(
-        values=[1,1,1,1,1,5],  # last part = blank
-        labels=["Poor 300-579","Fair 580-669","Good 670-739",
-                "Very Good 740-799","Excellent 800-900",""],
-        marker=dict(colors=["#ef4444","#f97316","#facc15","#a3e635","#2ecc71","white"]),
-        hole=0.5,
-        direction="clockwise",
-        sort=False,
-        rotation=180,   # semicircle
-        textinfo="label",
-        hoverinfo="skip"
-    ))
-
-    # Needle
-    fig.add_trace(go.Scatter(
-        x=[0.5, x_head],
-        y=[0.5, y_head],
-        mode="lines",
-        line=dict(color="black", width=6),
-        hoverinfo="skip",
-        showlegend=False
-    ))
-
-    # Center circle
-    fig.add_trace(go.Scatter(
-        x=[0.5],
-        y=[0.5],
-        mode="markers",
-        marker=dict(size=30, color="black"),
-        hoverinfo="skip",
-        showlegend=False
-    ))
-
-    # Layout
-    fig.update_layout(
-        showlegend=False,
-        margin=dict(t=50,b=20,l=20,r=20),
-        paper_bgcolor="white",
-        plot_bgcolor="white",
-        xaxis=dict(visible=False),
-        yaxis=dict(visible=False),
-        height=400
-    )
-    return fig
-
 st.sidebar.title("Loan Prediction App")
 menu = st.sidebar.radio("Navigation", ["Home", "Loan Approval", "Loan Prediction", "CIBIL Estimator"])
 
@@ -152,7 +94,9 @@ elif menu == "CIBIL Estimator":
 
         # Keep within CIBIL range
         score = min(max(score, 300), 900)
-        st.plotly_chart(make_gauge(score))
+
+        fig = go.Figure(go.Indicator( mode="gauge+number", value=score, title={'text': "Estimated CIBIL Score"}, gauge={ 'axis': {'range': [300, 900]}, 'bar': {'color': "black"}, 'steps': [ {'range': [300, 600], 'color': "red"}, {'range': [600, 750], 'color': "yellow"}, {'range': [750, 900], 'color': "green"} ], 'threshold': { 'line': {'color': "blue", 'width': 4}, 'thickness': 0.8, 'value': score } } ))
+        st.plotly_chart(fig)
                 
         if score < 600:
             st.error("⚠️ Poor Credit Score – Work on repayment discipline.")
@@ -160,6 +104,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
