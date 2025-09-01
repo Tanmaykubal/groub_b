@@ -24,6 +24,7 @@ if menu == "Home":
 
     - **Check your Loan Eligibility**: Check whether your loan will be approved (Yes/No)
     - **Predict Loan Amount**: Predict how much loan can be sanctioned.
+    - **CIBIL Score Estimator**: Estimate your CIBIL score based on your credit behavior and financial profile.
              
     Designed to be simple, fast, and user-friendly, LoanBuddy helps you make informed financial decisions with confidence
 """)
@@ -104,6 +105,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
