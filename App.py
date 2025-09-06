@@ -14,8 +14,7 @@ page_bg_img ="""
     <style>
     [data-testid="stAppViewContainer"] {
         background: url("https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-4088-61f7-9216-5386e7b051e9/raw?se=2025-09-06T16%3A31%3A41Z&sp=r&sv=2024-08-04&sr=b&scid=2a64ee98-13f3-576e-95b4-f0f9bacbd25f&skoid=ec8eb293-a61a-47e0-abd0-6051cc94b050&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-05T18%3A01%3A41Z&ske=2025-09-06T18%3A01%3A41Z&sks=b&skv=2024-08-04&sig=0ZzZbo1HLumOtjMSG/BUlEplp%2B7Hj/qZWfXlMDkGdlc%3D") no-repeat center center fixed;
-        background-size: cover
-        background-position: top center;
+        background-size: cover;
     }
     [data-testid="stHeader"] {
         background-color: rgba(0, 0, 0, 0);  /* Transparent header */
@@ -132,6 +131,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
