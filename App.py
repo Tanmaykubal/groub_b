@@ -19,7 +19,7 @@ size_option = st.sidebar.selectbox(
 page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] {{
-    background: url("https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-1374-61f7-9b10-6ab3f92ed356/raw?se=2025-09-06T16%3A53%3A54Z&sp=r&sv=2024-08-04&sr=b&scid=4e36b8ff-9321-504e-81f7-eaefa6e4c991&skoid=ec8eb293-a61a-47e0-abd0-6051cc94b050&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-05T18%3A01%3A39Z&ske=2025-09-06T18%3A01%3A39Z&sks=b&skv=2024-08-04&sig=KiqCv7Gm1NwxlPetHiUROtMqyGFA2U2NFzifXkrdIu4%3D") no-repeat center center fixed;
+    background: url("https://sdmntprcentralus.oaiusercontent.com/files/00000000-f1f8-61f5-9da5-c86f549e1221/raw?se=2025-09-06T16%3A57%3A33Z&sp=r&sv=2024-08-04&sr=b&scid=2025e289-1789-5152-b468-bad6b3826c4d&skoid=ec8eb293-a61a-47e0-abd0-6051cc94b050&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-06T13%3A15%3A23Z&ske=2025-09-07T13%3A15%3A23Z&sks=b&skv=2024-08-04&sig=W2E6g2OFmCflOWXurIbNX%2Bt%2B%2BfSj8wA/iVqO9ne2gnk%3D") no-repeat center center fixed;
     background-size: {size_option};
 }}
 
@@ -143,6 +143,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
