@@ -48,6 +48,27 @@ page_bg_img = f"""
 # Inject CSS
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
+# Sidebar background color picker
+sidebar_color = st.sidebar.color_picker("Pick a sidebar color", "#1E3A8A")  # default navy blue
+
+# Inject CSS
+sidebar_style = f"""
+<style>
+[data-testid="stSidebar"] > div:first-child {{
+    background-color: {sidebar_color};
+    color: white;  /* text color */
+}}
+
+[data-testid="stSidebar"] .css-1v0mbdj, 
+[data-testid="stSidebar"] .css-10trblm, 
+[data-testid="stSidebar"] label, 
+[data-testid="stSidebar"] span {{
+    color: white !important;  /* force text/icons to white */
+}}
+</style>
+"""
+st.markdown(sidebar_style, unsafe_allow_html=True)
+
 st.sidebar.title("Loan Prediction App")
 menu = st.sidebar.radio("Navigation", ["Home", "Loan Approval", "Loan Prediction", "CIBIL Estimator"])
 
@@ -143,6 +164,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
