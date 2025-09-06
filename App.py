@@ -19,7 +19,7 @@ size_option = st.sidebar.selectbox(
 page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] {{
-    background: url("https://lh3.googleusercontent.com/gg/AAHar4cfuY2WlWqMTJTYRjCx23wduQO5zpswgDPBQOcSK3CG6RlBXeoa9yLoMiKMA2CRGgb8KPmsT-v1MSAoGb_M8eATvbs8WG0z9FUy46vSRwGgJDk3p_Hi2Z1IT1JWoWii9tlNjgvrUEvVVKjiZ8SIHtJmOnSB5lYV3FJeeSiW6teONomleWih") no-repeat center center fixed;
+    background: url("https://lh3.googleusercontent.com/gg/AAHar4fTMeD7-oe4-WTQ3YjI-hgnBUiiBVemtWENOfHTihlbyB74yp1T73wI0s7knT08WuDrMZNwSm__qxVazYst1Mxr7Mlj6ZoQ2s3GzwfsYeb_-1cBh7vtl_bQQT73kAsnBFka-B29l6Btmzh7AflLOPTY6rZ08TylrkIoY5Ygooc1IhW2EZZk") no-repeat center center fixed;
     background-size: {size_option};
 }}
 
@@ -164,6 +164,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
