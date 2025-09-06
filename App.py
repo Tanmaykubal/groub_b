@@ -16,38 +16,30 @@ size_option = st.sidebar.selectbox(
     ["auto", "cover", "contain", "100% auto", "auto 100%", "100% 100%", "50% 50%", "200px 300px"]
 )
 
-page_bg_img = f"""
-<style>
-[data-testid="stAppViewContainer"] {{
-    background: url("https://lh3.googleusercontent.com/gg/AAHar4fTMeD7-oe4-WTQ3YjI-hgnBUiiBVemtWENOfHTihlbyB74yp1T73wI0s7knT08WuDrMZNwSm__qxVazYst1Mxr7Mlj6ZoQ2s3GzwfsYeb_-1cBh7vtl_bQQT73kAsnBFka-B29l6Btmzh7AflLOPTY6rZ08TylrkIoY5Ygooc1IhW2EZZk") no-repeat center center fixed;
-    background-size: {size_option};
-}}
+image_url = st.sidebar.text_input(
+    "Enter background image URL:", 
+    "https://lh3.googleusercontent.com/gg-dl/AJfQ9KQ4oPkJOUh0MhF_wjH3DNhNzW4kbCnssfjO61GEkEtMoz0HUPLsx2JDWjVlE_z4ZaNB_GP1gAx1HXk7v0KvLJOzkL7x-TadZyOaBj-6ZxGIBwIOFPzRot3bL-uqf2l7_1k8ulxCi8rYX-zZbhSlE2T8-TeNRAb9Jn9kXVC8WVs8E-X-aw"  # default demo image
+)
 
-[data-testid="stHeader"] {{
-    background-color: rgba(0, 0, 0, 0);  /* Transparent header */
-}}
+if image_url:
+    page_bg_img = f"""
+    <style>
+    [data-testid="stAppViewContainer"] {{
+        background: url("{image_url}") no-repeat center center fixed;
+        background-size: {size_option};
+    }}
 
-[data-testid="stToolbar"] {{
-    right: 2rem;  /* Adjust toolbar position */
-}}
+    [data-testid="stHeader"] {{
+        background-color: rgba(0, 0, 0, 0);  /* transparent header */
+    }}
 
-.main .block-container {{
-    background-color: rgba(255, 255, 255, 0);  /* Fully transparent content background */
-    padding: 20px;
-}}
-
-.overlay {{
-    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent black overlay */
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-}}
-</style>
-"""
-
-# Inject CSS
-st.markdown(page_bg_img, unsafe_allow_html=True)
-
+    .main .block-container {{
+        background-color: rgba(255, 255, 255, 0);  /* transparent content */
+    }}
+    </style>
+    """
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+    
 # Sidebar background color picker
 sidebar_color = st.sidebar.color_picker("Pick a sidebar color", "#1E3A8A")  # default navy blue
 
@@ -164,6 +156,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
