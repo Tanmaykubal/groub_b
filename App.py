@@ -64,8 +64,8 @@ st.markdown(
 
 if menu == "Home":
     st.markdown(
-"""
-<div style='text-align: center; 
+    """
+    <div style='text-align: center; 
             font-family: "Trebuchet MS", sans-serif; 
             font-size: 22px; 
             line-height: 1.8; 
@@ -96,10 +96,10 @@ if menu == "Home":
     <span style='color:#FFD700;'>informed financial decisions</span> with confidence.
     </p>
 
-</div>
-""",
-unsafe_allow_html=True
-)
+    </div>
+    """,
+    unsafe_allow_html=True
+    )
 elif menu == "Loan Approval":
     st.title("✅ Loan Approval Check")
 
@@ -176,6 +176,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
