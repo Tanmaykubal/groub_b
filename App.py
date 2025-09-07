@@ -70,14 +70,15 @@ if menu == "🏠 Home":
     """,
     unsafe_allow_html=True
     )
+# ---------- Loan Approval block ----------
 elif menu == "✅ Loan Approval":
     st.markdown(
         """
         <h1 style='text-align: center; 
-                   font-family: "Trebuchet MS", sans-serif; 
-                   font-size: 50px; 
-                   color: #FFD700; 
-                   text-shadow: 2px 2px 8px #000000; margin-bottom: 8px;'>
+                    font-family: "Trebuchet MS", sans-serif; 
+                    font-size: 50px; 
+                    color: #FFD700; 
+                    text-shadow: 2px 2px 8px #000000; margin-bottom: 8px;'>
             ✅ Loan Approval Check
         </h1>
         """,
@@ -122,7 +123,7 @@ elif menu == "✅ Loan Approval":
 
     /* Dropdown options */
     ul[role="listbox"] li {
-        color: #000000 !important; /* This is the critical fix */
+        color: #000000 !important; /* This is the fix to make options visible */
         font-weight: 600 !important;
         padding: 6px 10px !important;
     }
@@ -161,6 +162,7 @@ elif menu == "✅ Loan Approval":
     </style>
     """
     st.markdown(widget_style, unsafe_allow_html=True)
+
     # ---------- Inputs ----------
     col1, col2 = st.columns(2)
     with col1:
@@ -178,10 +180,10 @@ elif menu == "✅ Loan Approval":
         columns = ['self_employed', 'income_annum', 'loan_amount', 'loan_term', 'cibil_score']
         X1 = pd.DataFrame([[self_employed, income_annum, loan_amount, loan_term, cibil_score]],
                           columns=columns)
-
+        
         # Run the model
         pred = loan_classifier.predict(X1)[0]
-
+        
         # Render custom result boxes using HTML for guaranteed colors/contrast
         if pred == 1:
             st.markdown(
@@ -271,6 +273,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
