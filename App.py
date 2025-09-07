@@ -97,7 +97,7 @@ elif menu == "✅ Loan Approval":
         font-weight: 700 !important;
     }
 
-    /* Selectbox visible input (match number input) */
+    /* Selectbox visible input */
     div[data-baseweb="select"] > div {
         background-color: rgba(255,255,255,0.95) !important;
         color: #000 !important;
@@ -107,23 +107,16 @@ elif menu == "✅ Loan Approval":
         font-weight: 700 !important;
     }
 
-    /* Text inside select input */
-    div[data-baseweb="select"] span {
-        color: #000 !important;
-        font-weight: 700 !important;
-    }
-
     /* Dropdown menu list */
     ul[role="listbox"] {
-        background-color: rgba(255,255,255,0.98) !important;
+        background-color: #ffffff !important;
         border-radius: 10px !important;
         border: 1px solid #ccc !important;
-        color: #000 !important;
     }
 
-    /* Dropdown menu items */
+    /* Dropdown options */
     ul[role="listbox"] li {
-        color: #000 !important;
+        color: #000000 !important;   /* force black text */
         font-weight: 600 !important;
         padding: 6px 10px !important;
     }
@@ -132,6 +125,9 @@ elif menu == "✅ Loan Approval":
         border-radius: 6px !important;
     }
 
+    /* Ensure dropdown arrow is visible */
+    div[data-baseweb="select"] svg { fill: #000 !important; }
+    
     /* Slider track (CIBIL gradient) */
     div[data-testid="stSlider"] > div > div > div {
         background: linear-gradient(90deg, #ff4b4b 0%, #ffd14d 50%, #66d36e 100%) !important;
@@ -273,6 +269,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
