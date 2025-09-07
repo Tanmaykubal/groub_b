@@ -113,6 +113,25 @@ elif menu == "✅ Loan Approval":
         font-weight: 700 !important;
     }
 
+    /* Dropdown menu list */
+    ul[role="listbox"] {
+        background-color: rgba(255,255,255,0.98) !important;
+        border-radius: 10px !important;
+        border: 1px solid #ccc !important;
+        color: #000 !important;
+    }
+
+    /* Dropdown menu items */
+    ul[role="listbox"] li {
+        color: #000 !important;
+        font-weight: 600 !important;
+        padding: 6px 10px !important;
+    }
+    ul[role="listbox"] li:hover {
+        background-color: #f0f0f0 !important;
+        border-radius: 6px !important;
+    }
+
     /* Slider track (CIBIL gradient) */
     div[data-testid="stSlider"] > div > div > div {
         background: linear-gradient(90deg, #ff4b4b 0%, #ffd14d 50%, #66d36e 100%) !important;
@@ -254,6 +273,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
