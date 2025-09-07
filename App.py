@@ -139,7 +139,7 @@ elif menu == "✅ Loan Approval":
     }
 
     /* fallback: ensure select arrow is dark for visibility */
-    div[data-baseweb="select"] svg { fill: #000 !important; }
+    div[data-baseweb="select"] svg { fill: #ffffff !important; }
     </style>
     """
     st.markdown(widget_style, unsafe_allow_html=True)
@@ -254,6 +254,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
