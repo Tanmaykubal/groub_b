@@ -81,7 +81,8 @@ input[type="number"] {
 
 div[data-baseweb="select"] > div {
     background-color: rgba(255,255,255,0.95) !important;
-    color: black !important
+    color: black !important;
+    font-weight: 700 !important
 }
 /* Buttons */
 .stButton>button {
@@ -142,12 +143,12 @@ slider_style = """
 div[data-testid="stSlider"] > div > div > div {
     background: linear-gradient(90deg, #ff4b4b 0%, #ffd14d 50%, #66d36e 100%) !important;
     height: 10px !important;
-    color: white;
     border-radius: 6px !important;
 }
-/* Slider value text */
-div[data-testid="stSlider"] .st-bd {
+/* Slider value text, a more specific selector */
+div[data-testid="stSliderThumbValue"] {
     color: white !important;
+    -webkit-text-fill-color: white !important; /* For Safari/Chrome */
 }
 </style>
 """
@@ -350,6 +351,7 @@ elif menu == "📊 CIBIL Estimator":
         st.markdown('<div class="result-warning">🙂 Fair Credit Score – Can be improved with timely payments.</div>', unsafe_allow_html=True)
     else:
         st.markdown('<div class="result-success">🎉 Excellent Credit Score – You’re likely to get loans easily.</div>', unsafe_allow_html=True)
+
 
 
 
