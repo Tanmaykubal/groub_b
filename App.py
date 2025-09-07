@@ -10,38 +10,26 @@ with open("Classification.pkl", "rb") as f:
 with open("Regressor.pkl", "rb") as f:
     loan_regressor = pickle.load(f)
 
-# Dropdown for background-size
-size_option = st.sidebar.selectbox(
-    "Choose Background Size",
-    ["auto", "cover", "contain", "100% auto", "auto 100%", "100% 100%", "50% 50%", "200px 300px"]
-)
+page_bg_img = f"""
+<style>
+[data-testid="stAppViewContainer"] {{
+    background: url("https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-ef28-622f-86b8-a4b70c064106/raw?se=2025-09-07T08%3A20%3A03Z&sp=r&sv=2024-08-04&sr=b&scid=1e2231e4-b1c8-58ca-9b68-c1e3100d2fc5&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-06T16%3A35%3A05Z&ske=2025-09-07T16%3A35%3A05Z&sks=b&skv=2024-08-04&sig=iUZJnpXePJIhvRdGdJV95rhirJFuTNz3ifjHXoML6qg%3D") no-repeat center center fixed;
+    background-size: cover;
+}}
 
-image_url = st.sidebar.text_input(
-    "Enter background image URL:", 
-    "https://lh3.googleusercontent.com/gg-dl/AJfQ9KQ4oPkJOUh0MhF_wjH3DNhNzW4kbCnssfjO61GEkEtMoz0HUPLsx2JDWjVlE_z4ZaNB_GP1gAx1HXk7v0KvLJOzkL7x-TadZyOaBj-6ZxGIBwIOFPzRot3bL-uqf2l7_1k8ulxCi8rYX-zZbhSlE2T8-TeNRAb9Jn9kXVC8WVs8E-X-aw"  # default demo image
-)
+[data-testid="stHeader"] {{
+    background-color: rgba(0, 0, 0, 0);  /* transparent header */
+}}
 
-if image_url:
-    page_bg_img = f"""
-    <style>
-    [data-testid="stAppViewContainer"] {{
-        background: url("{image_url}") no-repeat center center fixed;
-        background-size: {size_option};
-    }}
-
-    [data-testid="stHeader"] {{
-        background-color: rgba(0, 0, 0, 0);  /* transparent header */
-    }}
-
-    .main .block-container {{
-        background-color: rgba(255, 255, 255, 0);  /* transparent content */
-    }}
-    </style>
-    """
-    st.markdown(page_bg_img, unsafe_allow_html=True)
+.main .block-container {{
+    background-color: rgba(255, 255, 255, 0);  /* transparent content */
+}}
+</style>
+"""
+st.markdown(page_bg_img, unsafe_allow_html=True)
     
 # Sidebar background color picker
-sidebar_color = st.sidebar.color_picker("Pick a sidebar color", "#1E3A8A")  # default navy blue
+sidebar_color = st.sidebar.color_picker("Pick a sidebar color", "#0E71C5")  # default navy blue
 
 # Inject CSS
 sidebar_style = f"""
@@ -63,8 +51,6 @@ st.markdown(sidebar_style, unsafe_allow_html=True)
 
 st.sidebar.title("Loan Prediction App")
 menu = st.sidebar.radio("Navigation", ["Home", "Loan Approval", "Loan Prediction", "CIBIL Estimator"])
-
-import streamlit as st
 
 st.markdown(
     """
@@ -170,6 +156,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
