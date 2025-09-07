@@ -31,6 +31,12 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 # Sidebar Styling
 sidebar_style = """
 <style>
+/* Set sidebar width */
+section[data-testid="stSidebar"] {
+    min-width: 250px;
+    max-width: 250px;
+}
+
 /* Sidebar container */
 [data-testid="stSidebar"] > div:first-child {
     background: linear-gradient(180deg, #0072ff, #00c6ff);
@@ -38,6 +44,8 @@ sidebar_style = """
     border-radius: 0px 15px 15px 0px;
     box-shadow: 4px 0px 15px rgba(0,0,0,0.3);
     padding: 15px;
+    overflow-x: hidden;   /* disable horizontal scroll */
+    overflow-y: auto;     /* keep vertical scroll if content is too long */
 }
 
 /* Sidebar title */
@@ -216,6 +224,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
