@@ -65,41 +65,41 @@ st.markdown(
 if menu == "Home":
     st.markdown(
 """
-    <div style='text-align: center; 
-                font-family: "Trebuchet MS", sans-serif; 
-                font-size: 22px; 
-                line-height: 1.8; 
-                color: #ffffff; 
-                padding: 25px; 
-                margin-top: 30px;
-                background: rgba(0, 0, 0, 0.55); 
-                border-radius: 15px;
-                box-shadow: 0px 4px 15px rgba(0,0,0,0.4);'>
+<div style='text-align: center; 
+            font-family: "Trebuchet MS", sans-serif; 
+            font-size: 22px; 
+            line-height: 1.8; 
+            color: #ffffff; 
+            padding: 25px; 
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.55); 
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.4);'>
 
-        <h2 style='color: #FFD700; text-shadow: 1px 1px 8px #000; margin-bottom:20px;'>
-            🏦 Welcome to LoanBuddy!
-        </h2>
+    <h2 style='color: #FFD700; text-shadow: 1px 1px 8px #000; margin-bottom:20px;'>
+        🏦 Welcome to LoanBuddy!
+    </h2>
 
-        <p>
-        LoanBuddy is your smart companion for quick and reliable loan predictions.<br>
-        With just a few simple details, you can:
-        </p>
+    <p>
+    LoanBuddy is your smart companion for quick and reliable loan predictions.<br>
+    With just a few simple details, you can:
+    </p>
 
-        <div style='text-align: left; display: inline-block;'>
-            <p>✔ <b>Check your Loan Eligibility:</b> Know whether your loan will be approved (Yes/No).</p>
-            <p>✔ <b>Predict Loan Amount:</b> Find out how much loan can be sanctioned.</p>
-            <p>✔ <b>CIBIL Score Estimator:</b> Estimate your CIBIL score based on your credit behavior and financial profile.</p>
-        </div>
-
-        <p style='margin-top: 25px; font-size: 20px;'>
-        🚀 Designed to be <b>simple, fast, and user-friendly</b>, LoanBuddy helps you make 
-        <span style='color:#FFD700;'>informed financial decisions</span> with confidence.
-        </p>
-
+    <div style='text-align: left; display: inline-block;'>
+        <p>✔ <b>Check your Loan Eligibility:</b> Know whether your loan will be approved (Yes/No).</p>
+        <p>✔ <b>Predict Loan Amount:</b> Find out how much loan can be sanctioned.</p>
+        <p>✔ <b>CIBIL Score Estimator:</b> Estimate your CIBIL score based on your credit behavior and financial profile.</p>
     </div>
-""",
-unsafe_allow_html=True)
 
+    <p style='margin-top: 25px; font-size: 20px;'>
+    🚀 Designed to be <b>simple, fast, and user-friendly</b>, LoanBuddy helps you make 
+    <span style='color:#FFD700;'>informed financial decisions</span> with confidence.
+    </p>
+
+</div>
+""",
+unsafe_allow_html=True
+)
 elif menu == "Loan Approval":
     st.title("✅ Loan Approval Check")
 
@@ -176,6 +176,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
