@@ -29,70 +29,6 @@ page_bg_img = f"""
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Sidebar Styling
-sidebar_style = """
-<style>
-/* Set sidebar width */
-section[data-testid="stSidebar"] {
-    min-width: 250px;
-    max-width: 250px;
-}
-
-/* Sidebar container */
-[data-testid="stSidebar"] > div:first-child {
-    background: linear-gradient(180deg, #0072ff, #00c6ff);
-    color: white;
-    border-radius: 0px 15px 15px 0px;
-    box-shadow: 4px 0px 15px rgba(0,0,0,0.3);
-    padding: 15px;
-    overflow-x: hidden;   /* disable horizontal scroll */
-    overflow-y: auto;     /* keep vertical scroll if content is too long */
-}
-
-/* Sidebar title */
-[data-testid="stSidebar"] h2, 
-[data-testid="stSidebar"] h3 {
-    color: #FFD700 !important;
-    text-align: center;
-    font-family: "Trebuchet MS", sans-serif;
-    text-shadow: 1px 1px 6px black;
-}
-
-/* Sidebar labels & text */
-[data-testid="stSidebar"] label, 
-[data-testid="stSidebar"] span, 
-[data-testid="stSidebar"] p {
-    color: white !important;
-    font-size: 16px !important;
-    font-family: "Trebuchet MS", sans-serif;
-}
-
-/* Radio buttons */
-[data-testid="stSidebar"] .stRadio > label {
-    display: block;
-    background: rgba(255,255,255,0.1);
-    padding: 10px 14px;
-    margin: 6px 0;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-/* Hover effect */
-[data-testid="stSidebar"] .stRadio > label:hover {
-    background: rgba(255,255,255,0.25);
-    transform: scale(1.03);
-}
-
-/* Selected option */
-[data-testid="stSidebar"] .stRadio > label[data-checked="true"] {
-    background: #FFD700 !important;
-    color: black !important;
-    font-weight: bold;
-    box-shadow: 0px 0px 12px rgba(255,215,0,0.7);
-}
-</style>
-"""
-st.markdown(sidebar_style, unsafe_allow_html=True)
 
 st.sidebar.title("🌟 LoanBuddy Navigation")
 menu = st.sidebar.radio("Choose an option:", ["🏠 Home", "✅ Loan Approval", "💰 Loan Prediction", "📊 CIBIL Estimator"])
@@ -224,6 +160,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
