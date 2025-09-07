@@ -119,6 +119,18 @@ elif menu == "✅ Loan Approval":
         height: 10px !important;
         border-radius: 6px !important;
     }
+
+    /* Buttons */
+    .stButton>button {
+        background: linear-gradient(90deg, #FFD700, #FFA500) !important;
+        color: #000 !important;
+        font-size: 18px;
+        font-weight: 800;
+        border-radius: 12px;
+        padding: 10px 18px;
+        border: none;
+        box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+    }
 """
     st.markdown(widget_style, unsafe_allow_html=True)
 
@@ -232,6 +244,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
