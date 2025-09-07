@@ -27,15 +27,12 @@ page_bg_img = f"""
 </style>
 """
 st.markdown(page_bg_img, unsafe_allow_html=True)
-    
-# Sidebar background color picker
-sidebar_color = st.sidebar.color_picker("Pick a sidebar color", "#0E71C5")  # default navy blue
 
 # Inject CSS
 sidebar_style = f"""
 <style>
 [data-testid="stSidebar"] > div:first-child {{
-    background-color: {sidebar_color};
+    background-color: #0E71C5;
     color: white;  /* text color */
 }}
 
@@ -156,6 +153,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
