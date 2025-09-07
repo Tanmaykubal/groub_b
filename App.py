@@ -71,29 +71,58 @@ if menu == "🏠 Home":
     unsafe_allow_html=True
     )
 elif menu == "✅ Loan Approval":
-    st.title("✅ Loan Approval Check")
+    st.markdown(
+        """
+        <h2 style='text-align: center; 
+                   font-family: "Trebuchet MS", sans-serif; 
+                   font-size: 40px; 
+                   color: #FFD700; 
+                   text-shadow: 1px 1px 6px black;'>
+            ✅ Loan Approval Check
+        </h2>
+        """,
+        unsafe_allow_html=True
+    )
 
-    self_employed = st.selectbox("Self Employed", ["Yes", "No"])
-    income_annum = st.number_input("Annual Income (₹)", 250000, 10000000, 5000000)
-    loan_amount = st.number_input("Requested Loan Amount (₹)", 300000, 10000000, 5000000)
-    loan_term = st.slider("Loan Term (in years)", 0, 30, 15)
-    cibil_score = st.slider("CIBIL Score", 300, 900, 650)
+    with st.container():
+        st.markdown(
+            """
+            <div style='background: rgba(0, 0, 0, 0.55); 
+                        padding: 25px; 
+                        border-radius: 15px; 
+                        box-shadow: 0px 4px 15px rgba(0,0,0,0.5); 
+                        color: white; 
+                        font-size: 18px; 
+                        font-family: "Trebuchet MS", sans-serif;'>
+            """,
+            unsafe_allow_html=True
+        )
 
-    
+        # Inputs
+        col1, col2 = st.columns(2)
+        with col1:
+            self_employed = st.selectbox("💼 Self Employed", ["Yes", "No"])
+            income_annum = st.number_input("💰 Annual Income (₹)", 250000, 10000000, 5000000, step=50000)
+        with col2:
+            loan_amount = st.number_input("🏦 Requested Loan Amount (₹)", 300000, 10000000, 5000000, step=50000)
+            loan_term = st.slider("📅 Loan Term (in years)", 1, 30, 15)
 
+        cibil_score = st.slider("📊 CIBIL Score", 300, 900, 650)
 
-    if st.button("Check Approval"):
-        columns = ['self_employed', 'income_annum', 'loan_amount', 'loan_term', 'cibil_score']
-        X1 = pd.DataFrame([[self_employed, income_annum, loan_amount, loan_term, cibil_score]],
-                 columns=columns)
-        pred = loan_classifier.predict(X1)[0]
+        st.markdown("</div>", unsafe_allow_html=True)
 
+        # Prediction
+        if st.button("🔍 Check Approval", use_container_width=True):
+            columns = ['self_employed', 'income_annum', 'loan_amount', 'loan_term', 'cibil_score']
+            X1 = pd.DataFrame([[self_employed, income_annum, loan_amount, loan_term, cibil_score]],
+                              columns=columns)
 
-        if pred == 1:
-            st.success("🎉 Congratulations! Your loan is likely to be Approved.")
-        else:
-            st.error("❌ Sorry, your loan may not be approved.")
+            pred = loan_classifier.predict(X1)[0]
 
+            if pred == 1:
+                st.success("🎉 Congratulations! Your loan is likely to be **Approved** ✅")
+            else:
+                st.error("❌ Sorry, your loan may not be approved. Please review your details.")
 elif menu == "💰 Loan Prediction":
     st.title("💰 Loan Amount Prediction")
 
@@ -146,6 +175,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
