@@ -115,15 +115,12 @@ elif menu == "✅ Loan Approval":
 
     /* Dropdown (option list) */
     div[role="listbox"] {
-        background-color: rgba(255,255,255,0.98) !important;
+        background-color: rgba(255,255,255,0.95) !important;
         color: #000 !important;
-        border-radius: 8px !important;
+        border-radius: 10px !important;
         border: 1px solid #ddd !important;
-        padding: 8px !important;
-    }
-    div[role="option"] {
-        padding: 8px 12px !important;
-        border-radius: 6px !important;
+        padding: 8px 10px !important;
+        font-weight: 700 !important 
     }
     div[role="option"]:hover {
         background-color: rgba(0,0,0,0.06) !important;
@@ -167,7 +164,7 @@ elif menu == "✅ Loan Approval":
         income_annum = st.number_input("💰 Annual Income (₹)", 250000, 10000000, 5000000, step=50000, format="%d")
     with col2:
         loan_amount = st.number_input("🏦 Requested Loan Amount (₹)", 300000, 10000000, 5000000, step=50000, format="%d")
-        loan_term = st.slider("📅 Loan Term (in years)", 1, 30, 15)
+        loan_term = st.number_input("📅 Loan Term (in years)", 1, 30, 15)
 
     cibil_score = st.slider("📊 CIBIL Score", 300, 900, 650)
 
@@ -270,6 +267,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
