@@ -86,25 +86,8 @@ sidebar_style = """
 """
 st.markdown(sidebar_style, unsafe_allow_html=True)
 
-# Sidebar with icons in options
 st.sidebar.title("🌟 LoanBuddy Navigation")
-menu = st.sidebar.radio(
-    "Choose an option:",
-    ["🏠 Home", "✅ Loan Approval", "💰 Loan Prediction", "📊 CIBIL Estimator"]
-)
-
-# Match logic without emojis for functionality
-if "Home" in menu:
-    st.write("Home Page Content")
-elif "Loan Approval" in menu:
-    st.write("Loan Approval Page Content")
-elif "Loan Prediction" in menu:
-    st.write("Loan Prediction Page Content")
-elif "CIBIL Estimator" in menu:
-    st.write("CIBIL Estimator Page Content")
-
-st.sidebar.title("Loan Prediction App")
-menu = st.sidebar.radio("Navigation", ["Home", "Loan Approval", "Loan Prediction", "CIBIL Estimator"])
+menu = st.sidebar.radio("Choose an option:", ["🏠 Home", "✅ Loan Approval", "💰 Loan Prediction", "📊 CIBIL Estimator"])
 
 st.markdown(
     """
@@ -233,6 +216,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
