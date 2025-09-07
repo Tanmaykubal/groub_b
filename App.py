@@ -64,6 +64,21 @@ st.markdown(sidebar_style, unsafe_allow_html=True)
 st.sidebar.title("Loan Prediction App")
 menu = st.sidebar.radio("Navigation", ["Home", "Loan Approval", "Loan Prediction", "CIBIL Estimator"])
 
+import streamlit as st
+
+st.markdown(
+    """
+    <h1 style='text-align: center; 
+               font-family: "Trebuchet MS", sans-serif; 
+               font-size: 70px; 
+               color: #ffffff; 
+               text-shadow: 2px 2px 10px #000000;'>
+        🏦 Loan<span style="color:#00f2fe;">Buddy</span>
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
+
 if menu == "Home":
     st.title("🏦 LoanBuddy")
     st.write("""
@@ -156,6 +171,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
