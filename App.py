@@ -100,7 +100,7 @@ elif menu == "✅ Loan Approval":
     /* Selectbox visible input */
     div[data-baseweb="select"] > div {
         background-color: rgba(255,255,255,0.95) !important;
-        color: #000 !important;
+        color: #000000 !important;
         border-radius: 10px !important;
         border: 1px solid #ccc !important;
         padding: 8px 10px !important;
@@ -269,6 +269,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
