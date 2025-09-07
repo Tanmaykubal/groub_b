@@ -311,11 +311,10 @@ elif menu == "📊 CIBIL Estimator":
     score += credit_age * 4
 
     score = min(max(score, 300), 900)
-
+    st.button('Estimated CIBIL Score', use_container_width= True)
     fig = go.Figure(go.Indicator(
         mode="gauge+number",
         value=score,
-        title={'text': "<b>Estimated CIBIL Score<b>", 'font': {'color': 'black'}},
         gauge={
             'axis': {'range': [300, 900], 'tickwidth': 1, 'tickcolor': "darkgrey", 'tickfont': {'color': '#ffffff'}},
             'bar': {'color': "black"},
@@ -346,3 +345,4 @@ elif menu == "📊 CIBIL Estimator":
         st.markdown('<div class="result-warning">🙂 Fair Credit Score – Can be improved with timely payments.</div>', unsafe_allow_html=True)
     else:
         st.markdown('<div class="result-success">🎉 Excellent Credit Score – You’re likely to get loans easily.</div>', unsafe_allow_html=True)
+
