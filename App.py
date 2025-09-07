@@ -77,108 +77,147 @@ elif menu == "✅ Loan Approval":
                    font-family: "Trebuchet MS", sans-serif; 
                    font-size: 50px; 
                    color: #FFD700; 
-                   text-shadow: 2px 2px 8px #000000;'>
+                   text-shadow: 2px 2px 8px #000000; margin-bottom: 8px;'>
             ✅ Loan Approval Check
         </h1>
         """,
         unsafe_allow_html=True
     )
 
-    # 🔹 Custom Styling
+    # ---------- CSS: style inputs, dropdown, sliders, and results ----------
     widget_style = """
     <style>
-    /* Input boxes */
-    .stNumberInput input {
-        background-color: rgba(255, 255, 255, 0.9) !important;
-        color: #000000 !important;
+    /* Number inputs and text inputs */
+    input[type="number"] {
+        background-color: rgba(255,255,255,0.95) !important;
+        color: #000 !important;
         border-radius: 10px !important;
         border: 1px solid #ccc !important;
-        font-weight: bold;
+        padding: 8px 10px !important;
+        font-weight: 700 !important;
     }
 
-    /* Dropdown (selectbox) */
-    div[data-baseweb="select"] {
-        background-color: rgba(255, 255, 255, 0.9) !important;
-        color: black !important;
+    /* Visible selectbox control (baseweb structure) */
+    div[data-baseweb="select"] > div > div > div {
+        background-color: rgba(255,255,255,0.95) !important;
+        color: #000 !important;
         border-radius: 10px !important;
         border: 1px solid #ccc !important;
-        font-weight: bold;
+        padding: 6px 12px !important;
+        font-weight: 700 !important;
     }
+
+    /* Text inside the select control */
     div[data-baseweb="select"] span {
-        color: black !important;
+        color: #000 !important;
+        font-weight: 700 !important;
     }
 
-    /* Labels */
-    .stSelectbox label, .stNumberInput label, .stSlider label {
-        color: #ffffff !important;
-        font-weight: 600;
+    /* Dropdown (option list) */
+    div[role="listbox"] {
+        background-color: rgba(255,255,255,0.98) !important;
+        color: #000 !important;
+        border-radius: 8px !important;
+        border: 1px solid #ddd !important;
+        padding: 8px !important;
+    }
+    div[role="option"] {
+        padding: 8px 12px !important;
+        border-radius: 6px !important;
+    }
+    div[role="option"]:hover {
+        background-color: rgba(0,0,0,0.06) !important;
+    }
+
+    /* Slider track (CIBIL gradient) */
+    div[data-testid="stSlider"] > div > div > div {
+        background: linear-gradient(90deg, #ff4b4b 0%, #ffd14d 50%, #66d36e 100%) !important;
+        height: 10px !important;
+        border-radius: 6px !important;
     }
 
     /* Buttons */
     .stButton>button {
-        background: linear-gradient(90deg, #FFD700, #FFA500);
-        color: black !important;
+        background: linear-gradient(90deg, #FFD700, #FFA500) !important;
+        color: #000 !important;
         font-size: 18px;
-        font-weight: bold;
+        font-weight: 800;
         border-radius: 12px;
-        padding: 10px 20px;
+        padding: 10px 18px;
         border: none;
-        box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        box-shadow: 0 6px 14px rgba(0,0,0,0.18);
     }
 
-    /* Success / Error messages */
-    .stAlert {
-        border-radius: 12px;
-        font-weight: bold;
-        text-align: center;
-        font-size: 18px;
-    }
-    .stAlert[data-baseweb="notification"] {
-        background-color: transparent !important;
-    }
-    .stSuccess {
-        background-color: rgba(0, 255, 0, 0.2) !important;
-        color: black !important;
-    }
-    .stError {
-        background-color: rgba(255, 0, 0, 0.2) !important;
-        color: black !important;
+    /* make labels white so they sit on the gradient background */
+    label, .stMarkdown p {
+        color: #ffffff !important;
+        font-weight: 600 !important;
     }
 
-    /* CIBIL slider gradient */
-    div[data-testid="stSlider"] > div > div > div {
-        background: linear-gradient(90deg, red, yellow, green) !important;
-        height: 8px !important;
-        border-radius: 5px;
-    }
+    /* fallback: ensure select arrow is dark for visibility */
+    div[data-baseweb="select"] svg { fill: #000 !important; }
     </style>
     """
     st.markdown(widget_style, unsafe_allow_html=True)
 
-    # 🔹 User Inputs
+    # ---------- Inputs ----------
     col1, col2 = st.columns(2)
     with col1:
         self_employed = st.selectbox("🏢 Self Employed", ["Yes", "No"])
-        income_annum = st.number_input("💰 Annual Income (₹)", 250000, 10000000, 5000000)
+        income_annum = st.number_input("💰 Annual Income (₹)", 250000, 10000000, 5000000, step=50000, format="%d")
     with col2:
-        loan_amount = st.number_input("🏦 Requested Loan Amount (₹)", 300000, 10000000, 5000000)
-        loan_term = st.slider("📅 Loan Term (in years)", 0, 30, 15)
+        loan_amount = st.number_input("🏦 Requested Loan Amount (₹)", 300000, 10000000, 5000000, step=50000, format="%d")
+        loan_term = st.slider("📅 Loan Term (in years)", 1, 30, 15)
 
-    # CIBIL Score with Gradient Slider
     cibil_score = st.slider("📊 CIBIL Score", 300, 900, 650)
 
-    # 🔹 Prediction Button
-    if st.button("🔍 Check Approval"):
+    # ---------- Prediction ----------
+    if st.button("🔍 Check Approval", use_container_width=True):
+        # Build DataFrame for model (keep same columns/order your model expects)
         columns = ['self_employed', 'income_annum', 'loan_amount', 'loan_term', 'cibil_score']
         X1 = pd.DataFrame([[self_employed, income_annum, loan_amount, loan_term, cibil_score]],
                           columns=columns)
 
+        # Run the model
         pred = loan_classifier.predict(X1)[0]
 
+        # Render custom result boxes using HTML for guaranteed colors/contrast
         if pred == 1:
-            st.success("🎉 Congratulations! Your loan is likely to be **Approved** ✅")
+            st.markdown(
+                f"""
+                <div style="
+                    background: linear-gradient(90deg,#dff7df,#bff0bf);
+                    color: #064d11;
+                    padding: 14px 18px;
+                    border-radius: 12px;
+                    font-weight: 800;
+                    text-align: center;
+                    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+                    ">
+                    🎉 Congratulations! Your loan is likely to be
+                    <span style='color:#0b6e0b; margin-left:8px;'>Approved ✅</span>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
         else:
-            st.error("❌ Sorry, your loan may not be approved. Please try improving your profile.")
+            st.markdown(
+                f"""
+                <div style="
+                    background: linear-gradient(90deg,#ffd6d6,#ffb3b3);
+                    color: #5a0000;
+                    padding: 14px 18px;
+                    border-radius: 12px;
+                    font-weight: 800;
+                    text-align: center;
+                    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+                    ">
+                    ❌ Sorry, your loan may not be approved.
+                    <div style='font-weight:700; margin-top:6px;'>Tip: try improving income or CIBIL score.</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 elif menu == "💰 Loan Prediction":
     st.title("💰 Loan Amount Prediction")
 
@@ -231,6 +270,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
