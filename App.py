@@ -102,7 +102,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-if menu == "Home":
+if menu == "🏠 Home":
     st.markdown(
     """
     <div style='text-align: center; 
@@ -140,7 +140,7 @@ if menu == "Home":
     """,
     unsafe_allow_html=True
     )
-elif menu == "Loan Approval":
+elif menu == "✅ Loan Approval":
     st.title("✅ Loan Approval Check")
 
     self_employed = st.selectbox("Self Employed", ["Yes", "No"])
@@ -164,7 +164,7 @@ elif menu == "Loan Approval":
         else:
             st.error("❌ Sorry, your loan may not be approved.")
 
-elif menu == "Loan Prediction":
+elif menu == "💰 Loan Prediction":
     st.title("💰 Loan Amount Prediction")
 
     self_employed = st.selectbox("Self Employed", ["Yes", "No"])
@@ -182,7 +182,7 @@ elif menu == "Loan Prediction":
 
         st.success(f"🏦 You are likely to be sanctioned a loan of: ₹{int(pred):,}")
 
-elif menu == "CIBIL Estimator":
+elif menu == "📊 CIBIL Estimator":
     st.title("📊 CIBIL Score Estimator")
     st.write("If you don’t know your CIBIL score, answer a few questions to estimate it.")
 
@@ -216,6 +216,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
