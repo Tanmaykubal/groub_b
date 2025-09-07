@@ -73,14 +73,13 @@ st.markdown(
                font-size: 70px; 
                color: #ffffff; 
                text-shadow: 2px 2px 10px #000000;'>
-        🏦 Loan<span style="color:#00f2fe;">Buddy</span>
+        🏦 Loan<span style="color:#FFD700;">Buddy</span>
     </h1>
     """,
     unsafe_allow_html=True
 )
 
 if menu == "Home":
-    st.title("🏦 LoanBuddy")
     st.write("""
     🏦 Welcome to LoanBuddy!
     
@@ -171,6 +170,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
