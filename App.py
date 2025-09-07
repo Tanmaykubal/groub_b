@@ -10,26 +10,6 @@ with open("Classification.pkl", "rb") as f:
 with open("Regressor.pkl", "rb") as f:
     loan_regressor = pickle.load(f)
 
-page_bg_img = """
-<style>
-[data-testid="stAppViewContainer"] > .main {
-    background: url("https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-ef28-622f-86b8-a4b70c064106/raw?se=2025-09-07T08%3A20%3A03Z&sp=r&sv=2024-08-04&sr=b&scid=1e2231e4-b1c8-58ca-9b68-c1e3100d2fc5&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-06T16%3A35%3A05Z&ske=2025-09-07T16%3A35%3A05Z&sks=b&skv=2024-08-04&sig=iUZJnpXePJIhvRdGdJV95rhirJFuTNz3ifjHXoML6qg%3D") no-repeat center center fixed;
-    background-size: cover;
-}
-
-/* Transparent header */
-[data-testid="stHeader"] {
-    background: rgba(0, 0, 0, 0);
-}
-
-/* Transparent main content */
-.block-container {
-    background: rgba(255, 255, 255, 0);
-}
-</style>
-"""
-st.markdown(page_bg_img, unsafe_allow_html=True)
-
 # Sidebar Styling
 sidebar_style = f""" <style> [data-testid="stSidebar"] > div:first-child {{ background-color: #0E71C5; color: white; /* text color */ }} [data-testid="stSidebar"] .css-1v0mbdj, [data-testid="stSidebar"] .css-10trblm, [data-testid="stSidebar"] label, [data-testid="stSidebar"] span {{ color: white !important; /* force text/icons to white */ }} </style> """
 st.markdown(sidebar_style, unsafe_allow_html=True)
@@ -163,6 +143,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
