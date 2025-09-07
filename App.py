@@ -107,6 +107,12 @@ elif menu == "✅ Loan Approval":
         font-weight: 700 !important;
     }
 
+        /* Text inside select input */
+    div[data-baseweb="select"] span {
+        color: #000000 !important;
+        font-weight: 700 !important;
+    }
+
     /* Slider track (CIBIL gradient) */
     div[data-testid="stSlider"] > div > div > div {
         background: linear-gradient(90deg, #ff4b4b 0%, #ffd14d 50%, #66d36e 100%) !important;
@@ -248,6 +254,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
