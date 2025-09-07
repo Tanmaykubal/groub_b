@@ -29,7 +29,7 @@ page_bg_img = f"""
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Sidebar Styling
-
+sidebar_style = """ <style> [data-testid="stSidebar"] > div:first-child {{ background-color: #0E71C5; color: white; /* text color */ }} [data-testid="stSidebar"] .css-1v0mbdj, [data-testid="stSidebar"] .css-10trblm, [data-testid="stSidebar"] label, [data-testid="stSidebar"] span {{ color: white !important; /* force text/icons to white */ }} </style> """ st.markdown(sidebar_style, unsafe_allow_html=True)
 st.sidebar.title("🌟 LoanBuddy Navigation")
 menu = st.sidebar.radio("Choose an option:", ["🏠 Home", "✅ Loan Approval", "💰 Loan Prediction", "📊 CIBIL Estimator"])
 
@@ -160,6 +160,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
