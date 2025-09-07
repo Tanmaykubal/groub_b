@@ -77,7 +77,7 @@ if menu == "Home":
             box-shadow: 0px 4px 15px rgba(0,0,0,0.4);'>
 
     <h2 style='color: #FFD700; text-shadow: 1px 1px 8px #000; margin-bottom:20px;'>
-        🏦 Welcome to LoanBuddy!
+         Welcome to LoanBuddy!
     </h2>
 
     <p>
@@ -92,7 +92,7 @@ if menu == "Home":
     </div>
 
     <p style='margin-top: 25px; font-size: 20px;'>
-    🚀 Designed to be <b>simple, fast, and user-friendly</b>, LoanBuddy helps you make 
+     Designed to be <b>simple, fast, and user-friendly</b>, LoanBuddy helps you make 
     <span style='color:#FFD700;'>informed financial decisions</span> with confidence.
     </p>
 
@@ -176,6 +176,7 @@ elif menu == "CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
