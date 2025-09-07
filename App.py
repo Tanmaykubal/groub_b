@@ -144,6 +144,10 @@ div[data-testid="stSlider"] > div > div > div {
     height: 10px !important;
     border-radius: 6px !important;
 }
+/* Slider value and tick marks */
+div[data-testid="stSlider"] span {
+    color: white !important;
+}
 </style>
 """
 
@@ -345,4 +349,5 @@ elif menu == "📊 CIBIL Estimator":
         st.markdown('<div class="result-warning">🙂 Fair Credit Score – Can be improved with timely payments.</div>', unsafe_allow_html=True)
     else:
         st.markdown('<div class="result-success">🎉 Excellent Credit Score – You’re likely to get loans easily.</div>', unsafe_allow_html=True)
+
 
