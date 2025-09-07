@@ -88,7 +88,6 @@ elif menu == "✅ Loan Approval":
     widget_style = """
     <style>
     /* Input boxes */
-    .stSelectbox div[data-baseweb="select"],
     .stNumberInput input {
         background-color: rgba(255, 255, 255, 0.9) !important;
         color: #000000 !important;
@@ -97,8 +96,20 @@ elif menu == "✅ Loan Approval":
         font-weight: bold;
     }
 
+    /* Dropdown (selectbox) */
+    div[data-baseweb="select"] {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        color: black !important;
+        border-radius: 10px !important;
+        border: 1px solid #ccc !important;
+        font-weight: bold;
+    }
+    div[data-baseweb="select"] span {
+        color: black !important;
+    }
+
     /* Labels */
-    .stSelectbox label, .stNumberInput label {
+    .stSelectbox label, .stNumberInput label, .stSlider label {
         color: #ffffff !important;
         font-weight: 600;
     }
@@ -117,11 +128,21 @@ elif menu == "✅ Loan Approval":
 
     /* Success / Error messages */
     .stAlert {
-        background-color: rgba(255, 255, 255, 0.9) !important;
-        color: black !important;
+        border-radius: 12px;
         font-weight: bold;
         text-align: center;
-        border-radius: 12px;
+        font-size: 18px;
+    }
+    .stAlert[data-baseweb="notification"] {
+        background-color: transparent !important;
+    }
+    .stSuccess {
+        background-color: rgba(0, 255, 0, 0.2) !important;
+        color: black !important;
+    }
+    .stError {
+        background-color: rgba(255, 0, 0, 0.2) !important;
+        color: black !important;
     }
 
     /* CIBIL slider gradient */
@@ -158,7 +179,6 @@ elif menu == "✅ Loan Approval":
             st.success("🎉 Congratulations! Your loan is likely to be **Approved** ✅")
         else:
             st.error("❌ Sorry, your loan may not be approved. Please try improving your profile.")
-
 elif menu == "💰 Loan Prediction":
     st.title("💰 Loan Amount Prediction")
 
@@ -211,6 +231,7 @@ elif menu == "📊 CIBIL Estimator":
             st.warning("🙂 Fair Credit Score – Can be improved with timely payments.")
         else:
             st.success("🎉 Excellent Credit Score – You’re likely to get loans easily.")
+
 
 
 
