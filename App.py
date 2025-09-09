@@ -278,7 +278,7 @@ elif menu == "💰 Loan Prediction":
                           columns=columns_2)
         pred = loan_regressor.predict(X2)[0]
 
-        st.markdown(f'<div class="result-success">🏦 You are likely to be sanctioned a loan of: ₹{int(pred):,}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="result-success">🏦 You are likely to be sanctioned a loan of: ₹{int(pred*0.4):,}</div>', unsafe_allow_html=True)
 
 # ---------- CIBIL Estimator block ----------
 elif menu == "📊 CIBIL Estimator":
@@ -351,6 +351,7 @@ elif menu == "📊 CIBIL Estimator":
         st.markdown('<div class="result-warning">🙂 Fair Credit Score – Can be improved with timely payments.</div>', unsafe_allow_html=True)
     else:
         st.markdown('<div class="result-success">🎉 Excellent Credit Score – You’re likely to get loans easily.</div>', unsafe_allow_html=True)
+
 
 
 
