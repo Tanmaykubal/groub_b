@@ -21,6 +21,7 @@ Loanbuddy/
 └── requirements.txt
 ```
 
+## File Description
 | File Name          | Type                   | Purpose                                                              |
 | ------------------ | ---------------------------- | -------------------------------------------------------------------- |
 | devcontainer.json  | JSON Config           |Defines a reproducible development environment (used by tools like GitHub Codespaces/VS Code Dev Containers), ensuring consistent dependencies, settings, and base OS for all developers. |
