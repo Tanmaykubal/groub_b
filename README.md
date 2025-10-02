@@ -1,6 +1,6 @@
 # 🏦   LoanBuddy - End-to-End Loan Decision ML Application
 <p align="center">
-<img src="https://www.google.com/search?q=https://placehold.co/600x200/525287/ffffff%3Ftext%3DLoanBuddy%2BApp%2BScreenshot" alt="Placeholder for LoanBuddy App Screenshot" />
+<img src="Screenshot/Screenshot 2025-10-02 125124" alt="Placeholder for LoanBuddy App Screenshot" />
 </p>
 
 ## 💡 About LoanBuddy
