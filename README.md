@@ -38,6 +38,8 @@ LoanBuddy is an interactive, Streamlit-based web application developed to simpli
 
 ## This project was developed by: 
 
+Anshu Shah
+
 Tanmay Kubal
 
 Rushikesh Pawal
